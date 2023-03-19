@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen as uReq
 import logging
-#import datetime
+import datetime
 #logging.basicConfig(filename="scrapper.log" , level=logging.INFO, format="%(asctime)s")
 
 app = Flask(__name__)
@@ -26,9 +26,9 @@ def index():
             count=True
             reviews = []
             
-            #fw= open("Search_history.csv", "a")
-            #ct = datetime.datetime.now()
-            #fw.write(f"{searchString} : {ct}\n")
+            fw= open("Search_history.csv", "a")
+            ct = datetime.datetime.now()
+            fw.write(f"{searchString} : {ct}\n")
 
             for box in bigboxes:
                 try:
