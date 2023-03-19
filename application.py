@@ -8,8 +8,7 @@ import logging
 #logging.basicConfig(filename="scrapper.log" , level=logging.INFO, format="%(asctime)s")
 
 application = Flask(__name__)
-app=application
-@app.route("/", methods = ['GET'])
+@application.route("/", methods = ['GET'])
 def homepage():
     return render_template("index.html")
 
@@ -74,4 +73,4 @@ def index():
 
 
 if __name__=="__main__":
-    app.run(host="0.0.0.0")
+    application.run(host="0.0.0.0")
