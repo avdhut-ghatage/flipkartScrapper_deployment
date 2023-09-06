@@ -1,5 +1,4 @@
 from flask import Flask
-app = Flask(__name__)
 from flask import render_template, request,jsonify, got_request_exception
 from flask_cors import CORS,cross_origin
 import requests
@@ -12,21 +11,13 @@ import os
 import rollbar
 import rollbar.contrib.flask
 
-@app.before_first_request
-def init_rollbar():
-    """init rollbar module"""
-    rollbar.init(
-        # access token
-        '71e796e355b645279402ceb03161a577',
-        # environment name
-        'production',
-        # server root directory, makes tracebacks prettier
-        root=os.path.dirname(os.path.realpath(__file__)),
-        # flask already sets up logging
-        allow_logging_basic_config=False)
+app = Flask(__name__)
 
+with app.app_context():
+    rollbar.init('71e796e355b645279402ceb03161a577', environment='development')
     # send exceptions from `app` to rollbar, using flask's signal system.
     got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
+
 
 @app.route("/", methods = ['GET'])
 def homepage():
