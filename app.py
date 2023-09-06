@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,jsonify
+from flask import Flask, render_template, request,jsonify, got_request_exception
 from flask_cors import CORS,cross_origin
 import requests
 from bs4 import BeautifulSoup as bs
@@ -6,6 +6,25 @@ from urllib.request import urlopen as uReq
 import logging
 import datetime
 #logging.basicConfig(filename="scrapper.log" , level=logging.INFO, format="%(asctime)s")
+import os
+import rollbar
+import rollbar.contrib.flask
+
+@app.before_first_request
+def init_rollbar():
+    """init rollbar module"""
+    rollbar.init(
+        # access token
+        '11cf63beb184455d9b2e0371b4f45a5f',
+        # environment name
+        'production',
+        # server root directory, makes tracebacks prettier
+        root=os.path.dirname(os.path.realpath(__file__)),
+        # flask already sets up logging
+        allow_logging_basic_config=False)
+
+    # send exceptions from `app` to rollbar, using flask's signal system.
+    got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
 
 app = Flask(__name__)
 @app.route("/", methods = ['GET'])
