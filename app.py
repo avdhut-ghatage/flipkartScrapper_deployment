@@ -1,6 +1,6 @@
 from flask import Flask
 app = Flask(__name__)
-from flask render_template, request,jsonify, got_request_exception
+from flask import render_template, request,jsonify, got_request_exception
 from flask_cors import CORS,cross_origin
 import requests
 from bs4 import BeautifulSoup as bs
