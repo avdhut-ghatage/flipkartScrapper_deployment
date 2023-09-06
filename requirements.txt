@@ -16,5 +16,5 @@ urllib3==1.25.10
 Werkzeug==1.0.1
 pymongo
 flask==1.1.4
-rollbar==2.33.0
+rollbar
 pyrollbar
