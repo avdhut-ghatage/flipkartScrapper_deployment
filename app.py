@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request,jsonify, got_request_exception
+from flask import Flask
+app = Flask(__name__)
+from flask render_template, request,jsonify, got_request_exception
 from flask_cors import CORS,cross_origin
 import requests
 from bs4 import BeautifulSoup as bs
@@ -26,7 +28,6 @@ def init_rollbar():
     # send exceptions from `app` to rollbar, using flask's signal system.
     got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
 
-app = Flask(__name__)
 @app.route("/", methods = ['GET'])
 def homepage():
     return render_template("index.html")
