@@ -17,3 +17,4 @@ Werkzeug==1.0.1
 pymongo
 flask==1.1.4
 rollbar
+blinker
