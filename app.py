@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import render_template, request,jsonify, got_request_exception
+from flask import Flask, render_template, request,jsonify
 from flask_cors import CORS,cross_origin
 import requests
 from bs4 import BeautifulSoup as bs
@@ -8,6 +7,7 @@ import logging
 import datetime
 #logging.basicConfig(filename="scrapper.log" , level=logging.INFO, format="%(asctime)s")
 
+app = Flask(__name__)
 @app.route("/", methods = ['GET'])
 def homepage():
     return render_template("index.html")
