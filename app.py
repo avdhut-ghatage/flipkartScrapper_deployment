@@ -7,17 +7,6 @@ from urllib.request import urlopen as uReq
 import logging
 import datetime
 #logging.basicConfig(filename="scrapper.log" , level=logging.INFO, format="%(asctime)s")
-import os
-import rollbar
-import rollbar.contrib.flask
-
-app = Flask(__name__)
-
-with app.app_context():
-    rollbar.init('71e796e355b645279402ceb03161a577', environment='development')
-    # send exceptions from `app` to rollbar, using flask's signal system.
-    got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
-
 
 @app.route("/", methods = ['GET'])
 def homepage():
